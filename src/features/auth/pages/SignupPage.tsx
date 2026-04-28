@@ -44,7 +44,7 @@ export function SignupPage() {
     setServerError('')
     try {
       await signupUser(values)
-      navigate(`/auth/login?email=${encodeURIComponent(values.email)}`)
+      navigate(`/onboarding/workspace?name=${encodeURIComponent(values.fullName)}&email=${encodeURIComponent(values.email)}`)
     } catch (error) {
       setServerError(error instanceof Error ? error.message : 'Unable to create account')
     }

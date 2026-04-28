@@ -38,7 +38,7 @@ export function LoginPage() {
     setServerError('')
     try {
       await loginUser(values)
-      navigate('/dashboard')
+      navigate(`/onboarding/workspace?email=${encodeURIComponent(values.email)}`)
     } catch (error) {
       setServerError(error instanceof Error ? error.message : 'Unable to sign in')
     }
