@@ -37,7 +37,7 @@ export function CreateWorkspacePage() {
   const onSubmit = async (values: WorkspaceFormValues) => {
     try {
       await createWorkspace(values)
-      navigate('/dashboard')
+      navigate('/home')
     } catch (error) {
       setError('workspaceName', {
         message: error instanceof Error ? error.message : 'Unable to create workspace',

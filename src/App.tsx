@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { DashboardPage } from '@/features/auth/pages/DashboardPage'
 import { LoginPage } from '@/features/auth/pages/LoginPage'
+import { HomePage } from '@/features/home/pages/HomePage'
 import { CreateWorkspacePage } from '@/features/onboarding/pages/CreateWorkspacePage'
-import { SignupPage } from '@/features/auth/pages/SignupPage'
+import { SignupPage } from './features/auth/pages/SignupPage'
 
 function App() {
   return (
@@ -11,7 +11,8 @@ function App() {
       <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/auth/signup" element={<SignupPage />} />
       <Route path="/onboarding/workspace" element={<CreateWorkspacePage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/dashboard" element={<Navigate to="/home" replace />} />
     </Routes>
   )
 }
