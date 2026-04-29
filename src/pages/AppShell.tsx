@@ -12,7 +12,7 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function AppShell() {
   return (
-    <div className="min-h-screen bg-[#f3f4f8] pb-20">
+    <div className="min-h-screen w-full min-w-0 bg-[#f8f9fb] pb-20">
       <Outlet />
       <nav className="fixed right-0 bottom-0 left-0 z-40 border-t border-[#ececf3] bg-white">
         <div className={cn(appFooterGutter, 'flex justify-center py-2')}>
@@ -42,10 +42,10 @@ export function AppShell() {
               <Sparkles className="mx-auto size-4" />
               AI
             </button>
-            <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
+            <NavLink to="/more" className={navLinkClass}>
               <MoreHorizontal className="mx-auto size-4" />
               More
-            </span>
+            </NavLink>
           </div>
         </div>
       </nav>

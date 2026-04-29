@@ -2,7 +2,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight, BriefcaseBusiness } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useAppDispatch } from '@/app/hooks'
 import { createWorkspace } from '@/features/onboarding/api/workspaceApi'
+import { setWorkspace } from '@/features/workspace/workspaceSlice'
 import { workspaceSchema, type WorkspaceFormValues } from '@/features/onboarding/schemas/workspaceSchema'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,6 +20,7 @@ function getDefaultWorkspaceName(fullName: string) {
 }
 
 export function CreateWorkspacePage() {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const fullName = searchParams.get('name') ?? ''
@@ -37,6 +40,13 @@ export function CreateWorkspacePage() {
   const onSubmit = async (values: WorkspaceFormValues) => {
     try {
       await createWorkspace(values)
+      dispatch(
+        setWorkspace({
+          name: values.workspaceName.trim(),
+          memberCount: 1,
+          createdAt: new Date().toISOString(),
+        })
+      )
       navigate('/home')
     } catch (error) {
       setError('workspaceName', {

@@ -3,6 +3,7 @@ import counterReducer from '@/features/counter/counterSlice'
 import notesReducer from '@/features/notes/notesSlice'
 import projectsReducer from '@/features/projects/projectsSlice'
 import tasksReducer from '@/features/tasks/tasksSlice'
+import workspaceReducer from '@/features/workspace/workspaceSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     tasks: tasksReducer,
     projects: projectsReducer,
     notes: notesReducer,
+    workspace: workspaceReducer,
   },
 })
 
