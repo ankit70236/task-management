@@ -10,12 +10,15 @@ export interface Task {
   category: TaskCategory
   scope: TaskScope
   completed: boolean
+  /** When set, task is associated with a project from the projects hub. */
+  projectId?: string
 }
 
 export interface AddTaskPayload {
   title: string
   category: TaskCategory
   scope?: TaskScope
+  projectId?: string
 }
 
 const initialState: Task[] = []
@@ -25,7 +28,7 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action: PayloadAction<AddTaskPayload>) => {
-      const { title, category, scope = 'self' } = action.payload
+      const { title, category, scope = 'self', projectId } = action.payload
       const trimmed = title.trim()
       if (!trimmed) return
       state.push({
@@ -34,6 +37,7 @@ const tasksSlice = createSlice({
         category,
         scope,
         completed: false,
+        ...(projectId ? { projectId } : {}),
       })
     },
     toggleTaskComplete: (state, action: PayloadAction<string>) => {

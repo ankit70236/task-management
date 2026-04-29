@@ -44,6 +44,7 @@ function MetricCard({
 
 export function HomePage() {
   const pendingCount = useAppSelector((s) => s.tasks.filter((t) => !t.completed).length)
+  const projectCount = useAppSelector((s) => s.projects.filter((p) => p.status !== 'completed').length)
 
   return (
     <main>
@@ -66,7 +67,7 @@ export function HomePage() {
       <section className={cn(appContentFrame, 'mx-auto -mt-8 space-y-3')}>
         <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
           <MetricCard icon={<ListChecks className="size-4" />} value={pendingCount} label="Pending" />
-          <MetricCard icon={<Folder className="size-4" />} value={0} label="Active Projects" />
+          <MetricCard icon={<Folder className="size-4" />} value={projectCount} label="Active Projects" />
           <MetricCard icon={<TriangleAlert className="size-4 text-[#ef6a6a]" />} value={0} label="Urgent" />
           <MetricCard icon={<CheckCircle2 className="size-4 text-[#31af73]" />} value={0} label="Done Today" />
         </div>

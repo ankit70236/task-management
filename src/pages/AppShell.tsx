@@ -1,4 +1,4 @@
-import { Folder, ListChecks, MessageSquare, Sparkles, ChevronRight } from 'lucide-react'
+import { Folder, LayoutGrid, ListChecks, MessageSquare, MoreHorizontal, Sparkles } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { appFooterGutter } from '@/lib/appLayout'
 import { cn } from '@/lib/utils'
@@ -17,17 +17,17 @@ export function AppShell() {
         <div className={cn(appFooterGutter, 'flex justify-center py-2')}>
           <div className="flex w-full max-w-sm min-w-0 items-center justify-between sm:max-w-md md:max-w-lg lg:max-w-xl">
             <NavLink to="/home" className={navLinkClass} end>
-              <Folder className="mx-auto size-4" />
+              <LayoutGrid className="mx-auto size-4" />
               Home
             </NavLink>
             <NavLink to="/tasks" className={navLinkClass}>
               <ListChecks className="mx-auto size-4" />
               Tasks
             </NavLink>
-            <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
-              <Folder className="size-4" />
+            <NavLink to="/projects" className={navLinkClass}>
+              <Folder className="mx-auto size-4" />
               Projects
-            </span>
+            </NavLink>
             <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
               <MessageSquare className="size-4" />
               Notes
@@ -37,7 +37,7 @@ export function AppShell() {
               AI
             </span>
             <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
-              <ChevronRight className="size-4" />
+              <MoreHorizontal className="mx-auto size-4" />
               More
             </span>
           </div>
