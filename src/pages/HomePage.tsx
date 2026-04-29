@@ -9,10 +9,12 @@ import {
   MapPin,
   MessageSquare,
   Search,
-  Sparkles,
   TriangleAlert,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { useAppSelector } from '@/app/hooks'
+import { appContentFrame } from '@/lib/appLayout'
+import { cn } from '@/lib/utils'
 
 const calendarRows = [
   ['30', '31', '1', '2', '3', '4', '5'],
@@ -32,7 +34,7 @@ function MetricCard({
   label: string
 }) {
   return (
-    <article className="rounded-2xl border border-[#ececf3] bg-white p-4">
+    <article className="rounded-2xl border border-[#ececf3] bg-white p-3 sm:p-4">
       <div className="text-[#7b7f92]">{icon}</div>
       <p className="mt-2 text-4xl leading-none font-semibold text-[#171a27]">{value}</p>
       <p className="mt-1 text-sm text-[#7b7f92]">{label}</p>
@@ -41,13 +43,15 @@ function MetricCard({
 }
 
 export function HomePage() {
+  const pendingCount = useAppSelector((s) => s.tasks.filter((t) => !t.completed).length)
+
   return (
-    <main className="min-h-screen bg-[#f3f4f8]">
-      <section className="bg-[#5f64ea] px-4 pt-4 pb-12 text-white">
-        <div className="mx-auto flex w-full max-w-6xl items-start justify-between">
+    <main>
+      <section className="bg-[#5f64ea] pt-3 pb-10 text-white">
+        <div className={cn(appContentFrame, 'flex items-start justify-between')}>
           <div>
             <p className="text-lg font-semibold">Home</p>
-            <p className="mt-4 text-sm/5 text-white/70">Welcome back</p>
+            <p className="mt-3 text-sm/5 text-white/70">Welcome back</p>
             <h1 className="text-3xl font-bold">ankit</h1>
           </div>
           <div className="flex items-center gap-3 pt-1 text-white/90">
@@ -59,15 +63,15 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto -mt-8 w-full max-w-6xl space-y-4 px-4 pb-24">
-        <div className="grid gap-3 md:grid-cols-2">
-          <MetricCard icon={<ListChecks className="size-4" />} value={0} label="Pending" />
+      <section className={cn(appContentFrame, 'mx-auto -mt-8 space-y-3')}>
+        <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+          <MetricCard icon={<ListChecks className="size-4" />} value={pendingCount} label="Pending" />
           <MetricCard icon={<Folder className="size-4" />} value={0} label="Active Projects" />
           <MetricCard icon={<TriangleAlert className="size-4 text-[#ef6a6a]" />} value={0} label="Urgent" />
           <MetricCard icon={<CheckCircle2 className="size-4 text-[#31af73]" />} value={0} label="Done Today" />
         </div>
 
-        <article className="flex items-center gap-3 rounded-2xl border border-[#ececf3] bg-white p-4">
+        <article className="flex items-center gap-3 rounded-2xl border border-[#ececf3] bg-white p-3 sm:p-4">
           <div className="rounded-xl bg-[#f1f2ff] p-2 text-[#5f64ea]">
             <MapPin className="size-4" />
           </div>
@@ -79,14 +83,14 @@ export function HomePage() {
 
         <section>
           <p className="mb-2 font-semibold text-[#1c2030]">Up Next</p>
-          <article className="rounded-2xl border border-[#ececf3] bg-white p-8 text-center">
+          <article className="rounded-2xl border border-[#ececf3] bg-white p-6 text-center sm:p-8">
             <CheckCircle2 className="mx-auto size-7 text-[#31af73]" />
             <p className="mt-2 text-lg font-semibold text-[#1c2030]">All clear for today!</p>
             <p className="text-sm text-[#8a8ea2]">No tasks scheduled</p>
           </article>
         </section>
 
-        <section className="rounded-3xl border border-[#ececf3] bg-white p-4 md:p-6">
+        <section className="rounded-3xl border border-[#ececf3] bg-white p-3 md:p-5">
           <div className="mb-4 flex items-center justify-between">
             <ChevronLeft className="size-4 text-[#4f556b]" />
             <p className="font-semibold text-[#1c2030]">April 2026</p>
@@ -118,7 +122,9 @@ export function HomePage() {
 
           <div className="mt-5 border-t border-[#ececf3] pt-4 text-sm">
             <div className="flex items-center justify-between">
-              <p className="font-semibold text-[#1c2030]">Tue, Apr 28 <span className="font-normal text-[#8a8ea2]">0 tasks</span></p>
+              <p className="font-semibold text-[#1c2030]">
+                Tue, Apr 28 <span className="font-normal text-[#8a8ea2]">{pendingCount} tasks</span>
+              </p>
               <button type="button" className="font-medium text-[#5f64ea]">
                 + Add
               </button>
@@ -127,35 +133,6 @@ export function HomePage() {
           </div>
         </section>
       </section>
-
-      <nav className="fixed right-0 bottom-0 left-0 border-t border-[#ececf3] bg-white">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-6 px-2 py-2 text-center text-[11px] text-[#8a8ea2]">
-          <button type="button" className="flex flex-col items-center gap-1 text-[#5f64ea]">
-            <Folder className="size-4" />
-            Home
-          </button>
-          <button type="button" className="flex flex-col items-center gap-1">
-            <ListChecks className="size-4" />
-            Tasks
-          </button>
-          <button type="button" className="flex flex-col items-center gap-1">
-            <Folder className="size-4" />
-            Projects
-          </button>
-          <button type="button" className="flex flex-col items-center gap-1">
-            <MessageSquare className="size-4" />
-            Notes
-          </button>
-          <button type="button" className="flex flex-col items-center gap-1">
-            <Sparkles className="size-4" />
-            AI
-          </button>
-          <button type="button" className="flex flex-col items-center gap-1">
-            <ChevronRight className="size-4" />
-            More
-          </button>
-        </div>
-      </nav>
     </main>
   )
 }
