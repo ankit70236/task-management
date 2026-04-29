@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '@/features/counter/counterSlice'
+import notesReducer from '@/features/notes/notesSlice'
 import projectsReducer from '@/features/projects/projectsSlice'
 import tasksReducer from '@/features/tasks/tasksSlice'
 
@@ -8,6 +9,7 @@ export const store = configureStore({
     counter: counterReducer,
     tasks: tasksReducer,
     projects: projectsReducer,
+    notes: notesReducer,
   },
 })
 

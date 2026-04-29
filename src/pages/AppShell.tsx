@@ -1,4 +1,4 @@
-import { Folder, LayoutGrid, ListChecks, MessageSquare, MoreHorizontal, Sparkles } from 'lucide-react'
+import { FileText, Folder, LayoutGrid, ListChecks, MoreHorizontal, Sparkles } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { appFooterGutter } from '@/lib/appLayout'
 import { cn } from '@/lib/utils'
@@ -28,10 +28,10 @@ export function AppShell() {
               <Folder className="mx-auto size-4" />
               Projects
             </NavLink>
-            <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
-              <MessageSquare className="size-4" />
+            <NavLink to="/notes" className={navLinkClass}>
+              <FileText className="mx-auto size-4" />
               Notes
-            </span>
+            </NavLink>
             <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
               <Sparkles className="size-4" />
               AI

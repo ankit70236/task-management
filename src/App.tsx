@@ -4,6 +4,7 @@ import { CreateWorkspacePage } from '@/features/onboarding/pages/CreateWorkspace
 import { SignupPage } from './features/auth/pages/SignupPage'
 import { AppShell } from '@/pages/AppShell'
 import { HomePage } from '@/pages/HomePage'
+import { NotesPage } from '@/pages/NotesPage'
 import { ProjectsPage } from '@/pages/ProjectsPage'
 import { TasksPage } from '@/pages/TasksPage'
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/notes" element={<NotesPage />} />
       </Route>
       <Route path="/dashboard" element={<Navigate to="/home" replace />} />
     </Routes>
