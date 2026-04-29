@@ -1,5 +1,6 @@
 import { FileText, Folder, LayoutGrid, ListChecks, MoreHorizontal, Sparkles } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
+import { toast } from 'sonner'
 import { appFooterGutter } from '@/lib/appLayout'
 import { cn } from '@/lib/utils'
 
@@ -32,10 +33,15 @@ export function AppShell() {
               <FileText className="mx-auto size-4" />
               Notes
             </NavLink>
-            <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
-              <Sparkles className="size-4" />
+            <button
+              type="button"
+              onClick={() => toast.message('Coming soon')}
+              className="flex min-w-0 flex-1 cursor-pointer flex-col items-center gap-0.5 rounded-lg px-0.5 py-1 text-[11px] text-[#8a8ea2] transition-colors hover:text-[#6b6f8a] active:opacity-80"
+              aria-label="AI — coming soon"
+            >
+              <Sparkles className="mx-auto size-4" />
               AI
-            </span>
+            </button>
             <span className="flex min-w-0 flex-1 flex-col items-center gap-0.5 text-[11px] text-[#8a8ea2] opacity-50" title="Coming soon">
               <MoreHorizontal className="mx-auto size-4" />
               More
